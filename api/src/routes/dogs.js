@@ -39,6 +39,7 @@ try {
     })
     return {
       id: d.id,
+      image:d.image,
       name: d.name,
       temperament: result.join(" "),
       weight: d.weight
@@ -69,6 +70,7 @@ try {
   
     return {
       id: d.id,
+      image: d.image,
       name: d.name,
       temperament: result.join(" "),
       weight: d.weight
@@ -114,6 +116,7 @@ try {
       })
         return {
             id: e.id,
+            image: e.image,
             name: e.name,
             temperament: result.join(" "),
             weight: e.weight,
@@ -123,7 +126,7 @@ try {
         })
       }
       
-      dbResult ? res.send(dbFilter) : res.status(400).send("sin resultado")
+      dbResult ? res.send(dbFilter[0]) : res.status(400).send("sin resultado")
 
 
     }else {

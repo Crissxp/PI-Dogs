@@ -1,13 +1,13 @@
 const { Router } = require('express');
 const { v4: uuidv4 } = require("uuid")
-const { Dog, Temperament } = require('../db')
+const { Dog } = require('../db')
 const router = Router()
 
 
 
 
 router.post('/',  async (req, res) => {
-   const { name, height, weight, life_span, temperament } = req.body
+   const { name, height, weight, life_span, temperament, image } = req.body
 try {
   let newDog = await Dog.create({
     id: uuidv4(),
@@ -15,6 +15,7 @@ try {
     height,
     weight,
     life_span,
+    image
    })
    
    let idDog= newDog.id
