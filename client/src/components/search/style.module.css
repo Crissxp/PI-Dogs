@@ -1,0 +1,75 @@
+.back{
+  display: flex;
+  justify-content: center;
+
+}
+
+.all{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-items: center;
+  justify-content: center;
+  width: 600px;
+  margin: 15px;
+  margin-bottom: 0px;
+
+
+}
+
+
+.search{
+  display: flex;
+  justify-content: center;
+  margin-left: 0px;
+  width: 80%;
+  height: 40px;
+  border-radius: 5px 0px 0px 5px;
+  font-size: 20px;
+  margin-bottom: 2px;
+  
+}
+.btn{
+  background-color: rgba(0, 0, 0, 0.705);
+  color: rgb(251, 251, 253);
+  font-size: 15px;
+  height: 45px;
+  font-weight: bold;
+  border: solid 2px black;
+  border-radius: 0px 5px 5px 0px;
+}
+
+.btn:hover{
+  background-color: rgba(255, 251, 251, 0.589);
+  color: black;
+}
+.xbtn{
+  background-color: rgba(0, 0, 0, 0.705);
+  color: rgb(251, 251, 253);
+  font-size: 15px;
+  height: 45px;
+  font-weight: bold;
+  border: solid 2px black;
+  border-radius: 5px 0px 0px 5px;
+}
+.xbtn:hover{
+  background-color: rgba(255, 251, 251, 0.589);
+  color: black;
+}
+.options{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 500px;
+  height: 50px;
+}
+.spanSelec{
+  background-color: rgba(0, 0, 0, 0.705);
+  color: rgb(251, 251, 253);
+  font-weight: bold;
+  border: solid 2px black;
+  border-radius: 5px 0px 0px 5px;
+}
+
+

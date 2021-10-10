@@ -1,0 +1,19 @@
+.grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, auto)) ;
+  gap: 4%;
+  padding-top: 10px;
+  margin-bottom: 20px;
+  margin-top: 25px;
+  padding-left: 2%;
+  margin-left: 10px;
+  justify-content: center;
+  justify-items: center;
+  width:97%;
+  height: 100%;
+  list-style: none;
+  
+  
+}
+
+

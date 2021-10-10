@@ -1,0 +1,67 @@
+body{
+  background-image: url("../../img/Fotos\ de\ Huellas\ de\ perro\ de\ stock\,\ Huellas\ de\ perro\ imágenes\ libres\ de\ derechos\ _\ Depositphotos®.png");
+  background-attachment: fixed;
+}
+
+
+.btn{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+  margin-left: 1%;
+  margin: 20px;
+  
+}
+.arrow{
+  margin: 10px;
+  border: solid 2px;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.555);
+}
+.arrow:hover{
+  background-color: rgba(8, 8, 8, 0.431);
+  color: rgb(246, 246, 246);
+}
+.paginate{
+  
+  display: flex;
+  position: relative;
+  top: -20px;
+  height: 50px;
+  width: 50%;
+  margin-top: 20px;
+  padding-top: 50px;
+  padding-left: 47% ;
+}
+.num{
+  pointer-events: none;
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 2px;
+  border-radius: 6px;
+  width: 30px;
+  height: 40px;
+  transition: 1s;
+  background-color: rgba(15, 15, 15, 0.842);
+  color:rgb(228, 219, 219);
+  
+}
+.numberPag{
+ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(15, 15, 15, 0.842);
+  border: solid 2px;
+  border-radius: 6px;
+  color:rgb(228, 219, 219);
+ 
+  width: 60px;
+  height: 40px;
+}
