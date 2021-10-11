@@ -3,6 +3,7 @@ import Cards from "../../components/cards";
 import Nav from "../../components/nav";
 import Search from "../../components/search";
 import { useEffect } from "react";
+import { useHistory } from "react-router";
 import {
   clearId,
   getNameDog,
@@ -10,6 +11,10 @@ import {
   backPages,
   nextPage,
   getTemperament,
+  searchStatus,
+  selectData,
+  filterTemperament,
+  resetPage,
 } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router";
@@ -25,6 +30,7 @@ export default function Home() {
   const data = useSelector((state) => state.data);
   const order = useSelector((state) => state.order);
   const statusSeach = useSelector((state) => state.searchStatus);
+  const history = useHistory();
   const dispatch = useDispatch();
   const location = useLocation();
   const query = new URLSearchParams(location.search);
@@ -51,7 +57,7 @@ export default function Home() {
     dispatch(getTemperament());
     dispatch(clearId());
     setCurrentPage(page);
-  }, [dispatch, name, page, ]);
+  }, [dispatch, name, page]);
 
   //Select Data
 
@@ -94,6 +100,7 @@ export default function Home() {
     case "Low":
       result.sort(function (a, b) {
         if (parseInt(a.weight.slice(0, 3)) > parseInt(b.weight.slice(0, 3))) {
+          
           return 1;
         }
         if (parseInt(a.weight.slice(0, 3)) < parseInt(b.weight.slice(0, 3))) {
@@ -104,10 +111,11 @@ export default function Home() {
       break;
     case "High":
       result.sort(function (a, b) {
-        if (parseInt(a.weight.slice(-2)) < parseInt(b.weight.slice(-2))) {
+        console.log(a.weight.slice(-2) < b.weight.slice(-2) )
+        if (a.weight.slice(-2) <b.weight.slice(-2)) {
           return 1;
         }
-        if (parseInt(a.weight.slice(-2)) > parseInt(b.weight.slice(-2))) {
+        if (a.weight.slice(-2) >b.weight.slice(-2)) {
           return -1;
         }
         return 0;
@@ -142,50 +150,75 @@ export default function Home() {
   let maxPages = Math.ceil(result.length / postsPerPage);
 
   function handleBack(e) {
-    if(currentPage > 1){
+    if (currentPage > 1) {
       e.preventDefault(e);
-    dispatch(backPages(currentPage));
-    window.scrollTo(0,0)
-    return paginate(page);
+      dispatch(backPages(currentPage));
+      window.scrollTo(0, 0);
+      return paginate(page);
     }
-    
   }
 
   function handleNext(e) {
-    if(currentPage < maxPages){
+    if (currentPage < maxPages) {
       e.preventDefault();
-    window.scrollTo(0,0)
-    dispatch(nextPage(currentPage, maxPages));
-    return paginate(page);
+      window.scrollTo(0, 0);
+      dispatch(nextPage(currentPage, maxPages));
+      return paginate(page);
     }
-    
+  }
+  function handleAcep(e) {
+    e.preventDefault();
+    dispatch(searchStatus(false));
+    dispatch(resetPage());
+    dispatch(filterTemperament("All"));
+    dispatch(selectData("alldogs"));
+    history.push("/home");
+
+    dispatch(getNameDog);
   }
 
   return (
     <div className={style.background}>
       <Nav />
       <Search />
-      {result.length > 0 ? (
-        <Cards posts={currentPosts} />
+      {currentPosts.length > 0   ?  (
+        <div className={style.back}>
+          <Cards posts={currentPosts} />
+          <div className={style.paginate}>
+          <div className={style.btn}>
+            <button className={style.arrow} onClick={(e) => handleBack(e)}>
+              {"<"}
+            </button>
+            <h3 className={style.num}>{currentPage}</h3>
+            <button className={style.arrow} onClick={(e) => handleNext(e)}>
+              {">"}
+            </button>
+            {result.length > 8 && (
+              <h3 className={style.numberPag}> to {maxPages}</h3>
+            )}
+          </div>
+        </div>
+        </div>
+       
+         
       ) : statusSeach ? (
-        <h1>Sin resultados </h1>
+        <div className={style.notFoundBack}>
+          <h1 className={style.notFound}>
+            {" "}
+            no such breed could be found
+            <button
+              className={style.notFoundBtn}
+              onClick={(e) => handleAcep(e)}
+            >
+              OK
+            </button>{" "}
+          </h1>
+        </div>
       ) : (
         <Loading />
       )}
-      <div className={style.paginate}>
-        <div className={style.btn}>
-          <button className={style.arrow} onClick={(e) => handleBack(e)}>
-            {"<"}
-          </button>
-          <h3 className={style.num}>{currentPage}</h3>
-          <button className={style.arrow} onClick={(e) => handleNext(e)}>
-            {">"}
-          </button>
-          {result.length > 8 && (
-            <h3 className={style.numberPag}> to {maxPages}</h3>
-          )}
-        </div>
-      </div>
+
+      
     </div>
   );
 }

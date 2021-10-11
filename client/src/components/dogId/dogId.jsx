@@ -63,7 +63,9 @@ export default function DogId() {
                 </div>
               ) : (
                 <div className={style.temp}>
-                  <p>{temperament.split(" ").join(", ")}</p>
+                  {temperament  && 
+                  <p>{temperament.split(" ").join(", ")}</p>}
+                  
                 </div>
               )}
             </div>

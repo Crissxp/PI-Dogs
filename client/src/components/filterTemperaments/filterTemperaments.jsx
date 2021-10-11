@@ -1,5 +1,5 @@
 import { useSelector , useDispatch} from 'react-redux'
-import { filterTemperament, resetPage } from '../../Redux/actions'
+import { filterTemperament, resetPage, searchStatus } from '../../Redux/actions'
 import style from "./style.module.css"
 
 export default function FilterTemperaments() {
@@ -13,6 +13,7 @@ function handleChange(e){
   e.preventDefault()
   dispatch(filterTemperament(e.target.value))
   dispatch(resetPage())
+  dispatch(searchStatus(true))
 } 
   
 

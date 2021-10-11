@@ -138,9 +138,9 @@ export default function PostDog() {
     let tempAux = "";
     let tempid = form.temperament;
     let value = e.target.outerText;
-    tempName = tempName.filter((e) => e !== value);
+    tempName = tempName.filter((e) => e + " x" !== value );
     allTemp.map((e) => {
-      if (e.name === value) {
+      if (e.name + " x" === value) {
         tempAux = e.id;
       }
     });
@@ -202,6 +202,7 @@ export default function PostDog() {
               <h1>Create Dog</h1>
               <label className={style.formTxt}> Name:</label>
               <input
+                autoComplete="off"
                 maxLength="30"
                 className={style.input}
                 placeholder="name"
@@ -328,6 +329,7 @@ export default function PostDog() {
 
               <label className={style.formTxt}>Image:</label>
               <input
+                autoComplete="off"
                 className={style.input}
                 placeholder="Paste url"
                 onChange={(e) => {
@@ -368,7 +370,7 @@ export default function PostDog() {
                             key={i}
                             className={style.btnTemp}
                           >
-                            {e}
+                            {e} x
                           </p>
                         );
                       })}
@@ -406,9 +408,10 @@ export default function PostDog() {
           </form>
         </div>
       ) : (
-        <div >
-          <h1>Su personaje fue creado con exito!</h1>
-          <button onClick={(e) => handleAcep(e)}>OK</button>
+        <div className={style.backSucces} >
+          <h1 className={style.succesCreate}>The new breed was successfully created
+          <button className={style.succesBtn} onClick={(e) => handleAcep(e)}>OK</button></h1>
+          
         </div>
       )}
     </div>
