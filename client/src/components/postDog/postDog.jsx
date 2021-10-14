@@ -90,7 +90,6 @@ export default function PostDog() {
     temperament,
     image,
   }) {
-    console.log(name.trim().length > 1)
     if (
     
       name.trim().length > 2  && 
@@ -102,11 +101,11 @@ export default function PostDog() {
       
     ) {
       
-      SetValidate(true)
+    SetValidate(true)
       return true;
     }
     SetValidate(false)
-    return false;
+      return false;
   }
 
   function handleTemperament(e) {

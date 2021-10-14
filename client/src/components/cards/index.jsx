@@ -20,8 +20,8 @@ if(result){
       <ul className={style.grid}>
       { 
         posts.map( (e,idx) => {
-
-          return<li  key={idx} >
+         
+            return<li  key={idx} >
             <Link  onClick={()=>dispatch(getIdDog(e.id))} to={`/details/${e.id}`}>
                       <Dog  
                       name={e.name}
@@ -32,6 +32,8 @@ if(result){
           />
           </Link>
           </li> 
+          
+          
           
         })
       }

@@ -29,8 +29,6 @@ export function getNameDog(name){
       } 
       )
     } 
-  
-
 }
 
 export function getIdDog(id){

@@ -1,11 +1,11 @@
 .background{
   background-image: url("../../img/landing\ page.png") ;
-  background-size: 100% 100%;
-  background: cover;
+  background-size: cover;
+  min-height: 100vh;
+  background-position: center center;
+  
  
-  width: 100%;
-  height: 973px;
-  margin: 0px;
+  
   
 }
 .text{
@@ -40,53 +40,53 @@
 }
 @media screen and (min-width: 480px) and (max-width: 780px){
   .background{
-    background-image:cover;
-    display: flex;
-    position: relative;
-    left: -50%;
-    position:fixed;
-    height: 100%;
-    width: 180%;
-    justify-content: center;
-    
-    justify-content: center;}
+    background-size:cover;
+    background-position: center center;
+    min-height: 150vh;
+  }
   .text{
-    margin-left: 15%;
-    width: 50%;
-    height: 20%;
     font-size: 20px;
     display: flex;
     justify-content: center;
+    align-items: center;
     position: relative;
-    left: 15%;
+    width: 60%;
+    height: 50%;
+    border: solid 1px red;
 
   }
   .btn{
-    
-    left: 5%;
-    top: 50%;
+    border: solid 1px yellow;
+   
   }
 }
 @media screen and (max-width: 480px){
   .background{
-display: flex;
-position: relative;
-left: -50%;
-position:fixed;
-height: 100%;
-width: 180%;
-justify-content: center;
+    min-height: 100vh;
+    min-width: 100vw;
+    background-attachment: fixed;
+    background-position: -320px center;
+    justify-content: center;
+    align-items: center;
+
+
+
 }
 .text{
   position: relative;
   font-size: 20px;
-  left: 10%;
+  top: 290px;
+  left: 5%;
+  height: auto;
   width: 300px;
   justify-content: center;
+  align-items: center;
 
 }
 .btn{
-  top: 40%;
-  left: 5%;
+  justify-content: center;
+  position: relative;
+  top: 350px;
+  left: auto;
 }
 }

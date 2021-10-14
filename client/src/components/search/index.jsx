@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterTemperament, getNameDog, resetPage, searchStatus, selectData } 
+import {  getNameDog, resetPage, searchStatus } 
 from "../../Redux/actions";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
@@ -25,11 +25,9 @@ export default function Search({result}) {
     if (input.trim().length > 0) {
       dispatch(getNameDog(input));
       dispatch(resetPage());
-      dispatch(filterTemperament(e.target.value))
       dispatch(searchStatus(true))
       setInput("")
     } else {
-      e.preventDefault();
       alert("Cannot be searched if a race is not entered");
     }
   };
@@ -37,13 +35,7 @@ export default function Search({result}) {
     e.preventDefault()
     dispatch(searchStatus(false))
     dispatch(resetPage())
-    dispatch(filterTemperament("All"))
-    dispatch(selectData("alldogs"))
     history.push("/home")
-
-    
-    dispatch(getNameDog);
-    
     
   }
 
@@ -64,9 +56,9 @@ export default function Search({result}) {
           </button>{" "}
         </Link>
         <div className={style.options}>
-          <OrderDogs result={result} className={style.spanSelec}/>
-          <FilterTemperaments result={result} />
-          <SelectData result={result} />
+          <OrderDogs />
+          <FilterTemperaments />
+          <SelectData  />
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 body{
   background-image: url("../../img/background.png");
   background-attachment: fixed;
+
 }
 
 .back{
@@ -32,14 +33,14 @@ body{
   color: rgb(246, 246, 246);
 }
 .paginate{
-  align-items: flex-start ;
-  justify-content: start;
+  align-items: flex-end ;
+  justify-content: center;
   position: relative;
+  left: 35px;
   height: 50px;
   width: 50%;
   margin-top: 5px;
   padding-top: 10px;
-  left: 3%;
   padding-top: 2%;
 }
 .num{

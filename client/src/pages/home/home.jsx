@@ -59,24 +59,21 @@ export default function Home() {
     setCurrentPage(page);
   }, [dispatch, name, page]);
 
-  //Select Data
+  
 
-  let result = posts;
 
   if (data === "mydogs") {
-    result = posts.filter((e) => typeof e.id === "string");
+    posts = posts.filter((e) => typeof e.id === "string");
   } else if (data === "otherDogs") {
-    result = posts.filter((e) => typeof e.id === "number");
-  } else {
-    result = posts;
+    posts = posts.filter((e) => typeof e.id === "number");
   }
 
-  //Order data
-  if (result.name && result.weight) {
+  
+  if (posts.name && posts.weight) {
   }
   switch (order) {
     case "AZ":
-      result.sort(function (a, b) {
+      posts.sort(function (a, b) {
         if (a.name.toLowerCase() > b.name.toLowerCase()) {
           return 1;
         }
@@ -87,7 +84,7 @@ export default function Home() {
       });
       break;
     case "ZA":
-      result.sort(function (a, b) {
+      posts.sort(function (a, b) {
         if (a.name.toLowerCase() < b.name.toLowerCase()) {
           return 1;
         }
@@ -98,24 +95,22 @@ export default function Home() {
       });
       break;
     case "Low":
-      result.sort(function (a, b) {
-        if (parseInt(a.weight.slice(0, 3)) > parseInt(b.weight.slice(0, 3))) {
-          
+      posts.sort(function (a, b) {
+        if (a.weight.slice(0, 3) > b.weight.slice(0, 3)) {
           return 1;
         }
-        if (parseInt(a.weight.slice(0, 3)) < parseInt(b.weight.slice(0, 3))) {
+        if (a.weight.slice(0, 3) < b.weight.slice(0, 3)) {
           return -1;
         }
         return 0;
       });
       break;
     case "High":
-      result.sort(function (a, b) {
-        console.log(a.weight.slice(-2) < b.weight.slice(-2) )
-        if (a.weight.slice(-2) <b.weight.slice(-2)) {
+      posts.sort(function (a, b) {
+        if (a.weight.slice(-2) < b.weight.slice(-2)) {
           return 1;
         }
-        if (a.weight.slice(-2) >b.weight.slice(-2)) {
+        if (a.weight.slice(-2) > b.weight.slice(-2)) {
           return -1;
         }
         return 0;
@@ -123,31 +118,36 @@ export default function Home() {
       break;
 
     case "order":
-      return result;
+      return posts;
 
     default:
       break;
   }
 
-  // filter temperamnet
+  
 
-  if (result && filterTemp !== undefined)
+  if (posts && filterTemp !== undefined){
+    
     // eslint-disable-next-line array-callback-return
-    result = result.filter((e) => {
+    posts = posts.filter((e) => {
       if (filterTemp === "All") {
-        return (result = posts);
+        return posts;
       } else if (e.temperament !== undefined) {
         return e.temperament.split(",").join("").match(filterTemp);
       }
     });
+  }
+    
+    
+    
 
-  // Get current posts
+  
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = result.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-  let maxPages = Math.ceil(result.length / postsPerPage);
+  let maxPages = Math.ceil(posts.length / postsPerPage);
 
   function handleBack(e) {
     if (currentPage > 1) {
@@ -181,26 +181,24 @@ export default function Home() {
     <div className={style.background}>
       <Nav />
       <Search />
-      {currentPosts.length > 0   ?  (
+      {posts.length > 0 ? (
         <div className={style.back}>
           <Cards posts={currentPosts} />
           <div className={style.paginate}>
-          <div className={style.btn}>
-            <button className={style.arrow} onClick={(e) => handleBack(e)}>
-              {"<"}
-            </button>
-            <h3 className={style.num}>{currentPage}</h3>
-            <button className={style.arrow} onClick={(e) => handleNext(e)}>
-              {">"}
-            </button>
-            {result.length > 8 && (
-              <h3 className={style.numberPag}> to {maxPages}</h3>
-            )}
+            <div className={style.btn}>
+              <button className={style.arrow} onClick={(e) => handleBack(e)}>
+                {"<"}
+              </button>
+              <h3 className={style.num}>{currentPage}</h3>
+              <button className={style.arrow} onClick={(e) => handleNext(e)}>
+                {">"}
+              </button>
+              {posts.length > 8 && (
+                <h3 className={style.numberPag}> to {maxPages}</h3>
+              )}
+            </div>
           </div>
         </div>
-        </div>
-       
-         
       ) : statusSeach ? (
         <div className={style.notFoundBack}>
           <h1 className={style.notFound}>
@@ -217,8 +215,6 @@ export default function Home() {
       ) : (
         <Loading />
       )}
-
-      
     </div>
   );
 }
