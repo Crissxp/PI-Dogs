@@ -55,6 +55,7 @@ export default function Home() {
     dispatch(setLoading());
     dispatch(getNameDog(name));
     dispatch(getTemperament());
+    dispatch(filterTemperament("All"))
     dispatch(clearId());
     setCurrentPage(page);
   }, [dispatch, name, page]);
@@ -67,6 +68,8 @@ export default function Home() {
   } else if (data === "otherDogs") {
     posts = posts.filter((e) => typeof e.id === "number");
   }
+    
+
 
   
   if (posts.name && posts.weight) {

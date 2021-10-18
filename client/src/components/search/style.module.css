@@ -37,6 +37,7 @@
   font-weight: bold;
   border: solid 2px black;
   border-radius: 0px 5px 5px 0px;
+  cursor: pointer;
 }
 
 .btn:hover{
